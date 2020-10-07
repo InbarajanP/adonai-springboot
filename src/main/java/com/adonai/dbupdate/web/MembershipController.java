@@ -14,7 +14,7 @@ import com.adonai.dbupdate.service.MembershipService;
 import com.adonai.dbupdate.validator.MembershipValidator;
 
 @Controller
-@RequestMapping("/membership")
+@RequestMapping("membership")
 public class MembershipController {
 
 	@Autowired

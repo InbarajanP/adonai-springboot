@@ -14,7 +14,7 @@ import com.adonai.dbupdate.service.PeopleService;
 import com.adonai.dbupdate.validator.PeopleValidator;
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping("people")
 public class PeopleController {
 	
 	@Autowired

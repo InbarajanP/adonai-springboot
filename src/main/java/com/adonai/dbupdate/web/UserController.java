@@ -37,7 +37,7 @@ public class UserController {
 	@Autowired
 	private UserValidator userValidator;
 
-	@GetMapping("/registration")
+	@GetMapping("/addUser")
 	public String registration(Model model) {
 
 		model.addAttribute("userForm", new UserForm());
@@ -45,7 +45,7 @@ public class UserController {
 		return "registration";
 	}
 
-	@PostMapping("/registration")
+	@PostMapping("/addUser")
 	public String registration(@ModelAttribute("userForm") UserForm userForm, BindingResult bindingResult) {
 		
 		userValidator.validate(userForm, bindingResult);
@@ -54,7 +54,8 @@ public class UserController {
 			return "registration";
 		}
 		
-		Role role =  roleService.findByName(DBObjects.Roles[1]);
+		// Should this be cached?
+		Role role =  roleService.findByName(DBObjects.RoleUser);
 		
 		Set<Role> userRoles = new HashSet<>();
 		userRoles.add(role);

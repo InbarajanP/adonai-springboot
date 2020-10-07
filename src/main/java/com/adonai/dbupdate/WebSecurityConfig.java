@@ -28,7 +28,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/resources/**", "/registration").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/addUser").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/people/add").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/membership/add").hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -36,7 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
+                .permitAll()
+                .and()
+            .exceptionHandling().accessDeniedPage("/accessdenied.jsp");
     }
 
     @Bean
